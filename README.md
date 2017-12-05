@@ -1,22 +1,10 @@
-# Readable API Server
+This application allows users to create, modify, and delete posts. Each post allows for provides a vote score and allows a user to up cote or down vote depending on whether they like the post. Additionally, each post supports comments for users to further discuss the content. Each comment, once created, can be modified or deleted, and users can also up vote and down vote the comment. 
 
-This is the starter project for the final assessment project for Udacity's Redux course where you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.
 
-This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
+In order to run the application the following steps need to be performed:
 
-## Start Developing
-
-To get started developing right away:
-
-* Install and start the API server
-    - `cd api-server`
-    - `npm install`
-    - `node server`
-* In another terminal window, use Create React App to scaffold out the front-end
-    - `create-react-app frontend`
-    - `cd frontend`
-    - `npm start`
-
-## API Server
-
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
+1. Install all dependencies by running the command 'npm install' from within both the frontend and api-server folders.
+2. To start the server the command 'node server' must be run from within the api-server folder.
+3. To start the react application the command 'npm start' must be run from within the frontend folder.
+4. Open up the application in your browser at localhost:3000.
+5. Have fun posting!

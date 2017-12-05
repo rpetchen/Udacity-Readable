@@ -26,3 +26,60 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.btn {
+  margin: 1px;
+}
+
+.postItem {
+  list-style-type: none;
+  padding-left: 0;
+
+}
+
+.postItem li {
+  display: inline;
+}
+
+.postItem li .btn-group{
+float: right;
+}
+
+.modifyPostB{
+  float: right;
+}
+
+.nav {
+ list-style-type: none; 
+}
+
+.commentText{
+ margin-left: 20px;
+}
+
+.list-group-item{
+  margin: 5px;
+}
+
+hr {
+  margin: 0;
+}
+
+input {
+  width: 400px;
+}
+
+textarea {
+  width: 400px;
+  color: black;
+}
+
+
+a {
+    text-decoration: none !important;
+}
+
+.categories{
+  
+  list-style: none;
+}

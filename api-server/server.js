@@ -11,7 +11,7 @@ const comments = require('./comments')
 const app = express()
 
 app.use(express.static('public'))
-app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 
 
 app.get('/', (req, res) => {
@@ -89,6 +89,7 @@ app.get('/', (req, res) => {
 
     GET /comments/:id
       USAGE:
+
         Get the details for a single comment
 
     POST /comments/:id
@@ -206,9 +207,11 @@ app.delete('/posts/:id', (req, res) => {
 })
 
 app.post('/posts/:id', bodyParser.json(), (req, res) => {
+
     const { option } = req.body
     const id = req.params.id
     posts.vote(req.token, id, option)
+   
       .then(
           (data) => res.send(data),
           (error) => {
@@ -221,6 +224,7 @@ app.post('/posts/:id', bodyParser.json(), (req, res) => {
 })
 
 app.put('/posts/:id', bodyParser.json(), (req, res) => {
+  console.log(req.body)
     posts.edit(req.token, req.params.id, req.body)
       .then(
         (data) => res.send(data),
@@ -260,6 +264,7 @@ app.get('/comments/:id', (req, res) => {
 })
 
 app.put('/comments/:id', bodyParser.json(), (req, res) => {
+  console.log(req.body)
     comments.edit(req.token, req.params.id, req.body)
       .then(
         (data) => res.send(data),
@@ -273,6 +278,7 @@ app.put('/comments/:id', bodyParser.json(), (req, res) => {
 })
 
 app.post('/comments', bodyParser.json(), (req, res) => {
+    console.log(req.body)
     comments.add(req.token, req.body)
       .then(
           (data) => res.send(data),
@@ -286,6 +292,7 @@ app.post('/comments', bodyParser.json(), (req, res) => {
 })
 
 app.post('/comments/:id', bodyParser.json(), (req, res) => {
+  console.log(req.body)
     const { option } = req.body
     comments.vote(req.token, req.params.id, option)
       .then(
@@ -312,6 +319,6 @@ app.delete('/comments/:id', (req, res) => {
       )
 })
 
-app.listen(config.port, () => {
-  console.log('Server listening on port %s, Ctrl+C to stop', config.port)
+app.listen(3001, () => {
+  console.log('Server listening on port %s, Ctrl+C to stop', 3001)
 })
