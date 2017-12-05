@@ -28,7 +28,7 @@ class CommentModal extends Component {
         <label>{label}</label>
         <div>
           {textarea ? textareaType : inputType}
-          {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+          {touched && ((error && <span>{error}</span>))}
         </div>
       </div>
     )
