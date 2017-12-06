@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { fetchPost, fetchComments, fetchComment, deleteComment, voteComment, votePost} from '../actions/index';
+import { fetchPost, fetchComments, fetchComment, deleteComment, voteComment, votePost, deletePost} from '../actions/index';
 import PostDetail from '../components/postDetail';
 import CommentDetail from '../components/commentDetails';
 import CommentModal from '../containers/commentModal';
@@ -37,6 +37,11 @@ class PostDetails extends Component {
   votePost = (id, option) => {
     this.props.votePost(id, option)
   };
+//method for deleting post
+  deletePost = (id) => {
+      //for dispatching a delete post action
+        this.props.deletePost(id, () =>{this.props.history.push("/")});
+    };
 
   componentDidMount() {
     //componentdidMount lifecycle event dispatches actions to retrieve the details of the particular post and the comments that belong to the post
@@ -51,7 +56,12 @@ class PostDetails extends Component {
     const myComments = [];
 
     if (!post) {
-      return <div>Loading...</div>
+      return(
+        <div>
+          <h2>Error 404 - Post {this.props.match.params.id} Not Found</h2>
+        </div>
+
+        )
     }
     //return method which wires up the comment modal and returns the postDetail component and a list of comments via the commentdetail component
     return (
@@ -66,7 +76,7 @@ class PostDetails extends Component {
           author={this.state.comment.author}
           showModal={this.state.showModal}
           id={this.state.commentId}/>
-        <PostDetail votePost={this.votePost} {...post}/>
+        <PostDetail deletePost={this.deletePost} votePost={this.votePost} {...post}/>
 
         <Panel header="Comments" bsStyle="info">
           {(Object.keys(comments).length > 0)
@@ -107,4 +117,4 @@ const mapStateToProps = ({posts, comments}, ownProps) => {
   }
 };
 
-export default connect(mapStateToProps, {fetchPost, fetchComments, fetchComment, deleteComment, voteComment, votePost})(PostDetails);
+export default connect(mapStateToProps, {fetchPost, fetchComments, fetchComment, deleteComment, voteComment, votePost, deletePost})(PostDetails);

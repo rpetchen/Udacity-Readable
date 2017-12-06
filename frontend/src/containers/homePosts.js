@@ -25,12 +25,13 @@ class homePosts extends Component {
 		}
 
 		componentWillReceiveProps(newProps) {
+			console.log(newProps)
 			//path and category are props used to determine whether to display root posts or posts by category
 				const {category} = newProps.match.params;
 				const {path} = newProps.match;
 
 				if (category && category !== this.props.match.params.category) {
-						this.props.categoriesPost(newProps.match.params.category);
+						this.props.categoriesPost(category);
 				}
 				if (path === "/" && this.props.match.params.category) {
 						this.props.fetchPosts();
@@ -63,9 +64,16 @@ class homePosts extends Component {
 		};
 
 		render() {
+				const {category} = this.props.match.params;
 				const {posts} = this.props;
 				const {filter} = this.state;
 				const myPosts = [];
+
+				if (category && !this.props.catNames.includes(category)){
+					return <h1> Invalid Category </h1>
+				}
+
+		
 				//default loading screen in cases where posts haven't been retrieved from the server
 				if (!posts) {
 						return <div>Loading...</div>;
@@ -108,8 +116,10 @@ class homePosts extends Component {
 		}
 }
 
-function mapStateToProps({posts}) {
-		return {posts: posts}
+function mapStateToProps({posts, categories}) {
+		const catNames = Object.values(categories).map((cat) => cat.name);
+		return {posts: posts,
+				catNames}
 }
 
 export default connect(mapStateToProps, {fetchPosts, categoriesPost, deletePost})(homePosts);

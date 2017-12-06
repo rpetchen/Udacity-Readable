@@ -30,10 +30,10 @@ ReactDOM.render(<Provider store={store}>
     <Switch>
      	<Route exact path="/" component={HomePosts }  />
         <Route exact path="/EditPost/:id" component={ PostForm } />
-     	<Route exact path="/categories/:category"  component={HomePosts } />
+     	<Route exact path="/:category"  component={HomePosts } />
      	<Route exact path="/:category/:id" component={ PostView } />
         <Route exact path="/CreatePost" component={ PostForm } />
-        
+        <Route exact path="/notFound" component={ PageNotFound} />
      	<Route component={PageNotFound}/>
    
 	</Switch>

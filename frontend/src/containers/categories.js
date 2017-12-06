@@ -25,7 +25,7 @@ class PostCategories extends Component {
             <li >View All Post Categories</li >
           </Link>
           {categories.map((cat, i) => (
-            <Link key={i} to={`/categories/${cat.name}`}>
+            <Link key={i} to={`/${cat.name}`}>
               <li >View Post By Category: {cat
                   .name
                   .charAt(0)

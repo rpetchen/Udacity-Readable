@@ -331,7 +331,7 @@ export function voteComment(option, id) {
 }
 
 //action dispatcher for deleting a post
-export function deletePost(id) {
+export function deletePost(id, callback) {
     const ext = `/posts/${id}`;
 
     let request = fetch(url + ext, {
@@ -345,7 +345,9 @@ export function deletePost(id) {
             return res.json();
         })
         .then((data) => {
-
+            if (callback){
+                callback()
+            }
             return data;
         });
 
